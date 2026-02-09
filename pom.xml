@@ -29,7 +29,7 @@
     </scm>
     <modules>
         <module>eureka-server</module>
-        <module>gateway-service</module>
+        <module>gateway-server</module>
         <module>config-server</module>
         <module>user-service</module>
         <module>customer-service</module>
