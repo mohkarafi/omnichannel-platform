@@ -41,6 +41,27 @@ services:
     networks:
       - microservices-net
 
+  redis:
+    image: redis:7-alpine
+    container_name: omnicanal-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  redis-test:
+    image: redis:7-alpine
+    container_name: omnicanal-redis-test
+    ports:
+      - "6370:6379"
+    command: redis-server --appendonly no
+
   mongo-express:
     container_name: ms_mongo_express
     image: mongo-express
@@ -74,3 +95,4 @@ volumes:
   pgadmin:
   mongo:
   es_data:
+  redis-data:
